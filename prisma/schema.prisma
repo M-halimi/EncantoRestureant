@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Status {
+  pending
+  confirmed
+  cancelled
+  completed
+}
+
+enum AdminRole {
+  admin
+  staff
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  name      String
+  email     String?
+  phone     String
+  guests    Int
+  date      DateTime
+  time      String
+  message   String?
+  status    Status   @default(pending)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  activityLogs ActivityLog[]
+
+  @@index([status])
+  @@index([date])
+  @@index([email])
+  @@index([name])
+  @@map("reservations")
+}
+
+model AdminUser {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      AdminRole  @default(staff)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  activityLogs ActivityLog[]
+
+  @@map("admin_users")
+}
+
+model ActivityLog {
+  id            String      @id @default(uuid())
+  reservationId String
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  action        String
+  fromStatus    String?
+  toStatus      String?
+  changedById   String?
+  changedBy     AdminUser?  @relation(fields: [changedById], references: [id])
+  createdAt     DateTime    @default(now()) @map("created_at")
+
+  @@index([reservationId])
+  @@index([createdAt])
+  @@map("activity_logs")
+}

@@ -48,6 +48,8 @@
     "reserveDate": "Date",
     "reserveTime": "Time",
     "reserveGuests": "Number of Guests",
+    "reserveMessage": "Message",
+    "optional": "optional",
     "reserveSubmit": "Reserve Now",
     "reserveSuccess": "Reservation confirmed! We'll contact you shortly."
   },

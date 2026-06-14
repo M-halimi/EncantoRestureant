@@ -8,15 +8,18 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { CheckCircle2 } from "lucide-react"
+import { CheckCircle2, Loader2 } from "lucide-react"
 
 const reservationSchema = z.object({
   name: z.string().min(3, "Name must be at least 3 characters"),
-  phone: z.string().regex(/^0[5-7]\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}$/, "Invalid Moroccan phone number"),
+  email: z.string().email("Invalid email").optional().or(z.literal("")),
+  phone: z.string().min(1, "Phone is required"),
   date: z.string().min(1, "Date is required"),
   time: z.string().min(1, "Time is required"),
   guests: z.string().min(1, "Number of guests is required"),
+  message: z.string().optional(),
 })
 
 type ReservationFormData = z.infer<typeof reservationSchema>
@@ -30,6 +33,7 @@ const timeSlots = Array.from({ length: 21 }, (_, i) => {
 export function ReservationForm() {
   const t = useTranslations("contact")
   const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const today = new Date().toISOString().split("T")[0]
 
   const {
@@ -43,11 +47,25 @@ export function ReservationForm() {
   })
 
   const onSubmit = async (data: ReservationFormData) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    console.log("Reservation:", data)
-    setSubmitted(true)
-    reset()
-    setTimeout(() => setSubmitted(false), 5000)
+    setError(null)
+    try {
+      const res = await fetch("/api/reservations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || "Failed to submit reservation")
+      }
+
+      setSubmitted(true)
+      reset()
+      setTimeout(() => setSubmitted(false), 6000)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong")
+    }
   }
 
   return (
@@ -59,10 +77,25 @@ export function ReservationForm() {
         </div>
       )}
 
+      {error && (
+        <div className="rounded-xl bg-red-50 p-4 text-sm text-red-600 dark:bg-red-900/30 dark:text-red-400">
+          {error}
+        </div>
+      )}
+
       <div className="space-y-2">
         <Label htmlFor="reserve-name">{t("reserveName")}</Label>
         <Input id="reserve-name" {...register("name")} />
         {errors.name && <p className="text-xs text-red-500">{errors.name.message}</p>}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="reserve-email">
+          Email
+          <span className="ml-1 text-zinc-400 dark:text-zinc-500">({t("optional")})</span>
+        </Label>
+        <Input id="reserve-email" type="email" placeholder="you@example.com" {...register("email")} />
+        {errors.email && <p className="text-xs text-red-500">{errors.email.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -113,8 +146,25 @@ export function ReservationForm() {
         {errors.guests && <p className="text-xs text-red-500">{errors.guests.message}</p>}
       </div>
 
-      <Button type="submit" size="lg" className="w-full bg-teal-700 hover:bg-teal-800" disabled={isSubmitting}>
-        {isSubmitting ? "..." : t("reserveSubmit")}
+      <div className="space-y-2">
+        <Label htmlFor="reserve-message">
+          {t("reserveMessage")}
+          <span className="ml-1 text-zinc-400 dark:text-zinc-500">({t("optional")})</span>
+        </Label>
+        <Textarea id="reserve-message" rows={3} {...register("message")} />
+      </div>
+
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full bg-teal-700 hover:bg-teal-800"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? (
+          <Loader2 className="h-5 w-5 animate-spin" />
+        ) : (
+          t("reserveSubmit")
+        )}
       </Button>
     </form>
   )

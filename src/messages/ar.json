@@ -48,6 +48,8 @@
     "reserveDate": "التاريخ",
     "reserveTime": "الوقت",
     "reserveGuests": "عدد الضيوف",
+    "reserveMessage": "رسالة",
+    "optional": "اختياري",
     "reserveSubmit": "احجز الآن",
     "reserveSuccess": "تم تأكيد الحجز! سنتصل بك قريباً."
   },
