@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "menu": "Menu",
+    "gallery": "Galerie",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Restaurant & Café — Cuisine Marocaine & Internationale",
+    "reserve": "Réserver une Table",
+    "viewMenu": "Voir le Menu"
+  },
+  "home": {
+    "featuredTitle": "Nos Spécialités",
+    "featuredSubtitle": "Découvrez les saveurs d'Encanto",
+    "locationTitle": "Nous Trouver",
+    "locationText": "Au cœur de Batha, Fès — là où la tradition rencontre la modernité.",
+    "instagram": "Suivez-nous sur Instagram"
+  },
+  "menu": {
+    "title": "Notre Menu",
+    "subtitle": "Un voyage à travers les saveurs marocaines et internationales",
+    "search": "Rechercher des plats...",
+    "vegan": "Végétalien",
+    "glutenFree": "Sans Gluten",
+    "price": "DH",
+    "withFries": "avec frites"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Moments et saveurs d'Encanto"
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Contactez-nous ou venez nous rendre visite",
+    "name": "Nom Complet",
+    "email": "Email",
+    "message": "Votre Message",
+    "send": "Envoyer",
+    "success": "Message envoyé avec succès !",
+    "address": "14 Rue de la Poste, Batha, Fès, Maroc",
+    "phone": "06 75 03 85 27",
+    "instagram": "@Encanto_fes_restaurant",
+    "hours": "Ouvert tous les jours",
+    "reserveTitle": "Faire une Réservation",
+    "reserveName": "Nom Complet",
+    "reservePhone": "Numéro de Téléphone",
+    "reserveDate": "Date",
+    "reserveTime": "Heure",
+    "reserveGuests": "Nombre d'Invites",
+    "reserveSubmit": "Réserver",
+    "reserveSuccess": "Réservation confirmée ! Nous vous contacterons sous peu."
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "tagline": "Cuisine marocaine et internationale au cœur de Fès."
+  },
+  "locale": {
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية"
+  }
+}

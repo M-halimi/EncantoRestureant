@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "menu": "القائمة",
+    "gallery": "المعرض",
+    "contact": "اتصل بنا"
+  },
+  "hero": {
+    "tagline": "مطعم وكوفي — مأكولات مغربية وعالمية",
+    "reserve": "احجز طاولة",
+    "viewMenu": "عرض القائمة"
+  },
+  "home": {
+    "featuredTitle": "تخصصاتنا",
+    "featuredSubtitle": "اكتشف نكهات إنسنتو",
+    "locationTitle": "موقعنا",
+    "locationText": "في قلب بطحاء، فاس — حيث يلتقي التقليد بالحداثة.",
+    "instagram": "تابعنا على إنستغرام"
+  },
+  "menu": {
+    "title": "قائمة الطعام",
+    "subtitle": "رحلة عبر النكهات المغربية والعالمية",
+    "search": "ابحث عن أطباق...",
+    "vegan": "نباتي",
+    "glutenFree": "خالٍ من الغلوتين",
+    "price": "درهم",
+    "withFries": "مع البطاطس المقلية"
+  },
+  "gallery": {
+    "title": "المعرض",
+    "subtitle": "لحظات ونكهات من إنسنتو"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "subtitle": "تواصل معنا أو زرنا",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "message": "رسالتك",
+    "send": "إرسال",
+    "success": "تم إرسال الرسالة بنجاح!",
+    "address": "14 شارع البريد، بطحاء، فاس، المغرب",
+    "phone": "06 75 03 85 27",
+    "instagram": "@Encanto_fes_restaurant",
+    "hours": "مفتوح يومياً",
+    "reserveTitle": "احجز طاولة",
+    "reserveName": "الاسم الكامل",
+    "reservePhone": "رقم الهاتف",
+    "reserveDate": "التاريخ",
+    "reserveTime": "الوقت",
+    "reserveGuests": "عدد الضيوف",
+    "reserveSubmit": "احجز الآن",
+    "reserveSuccess": "تم تأكيد الحجز! سنتصل بك قريباً."
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة.",
+    "tagline": "مأكولات مغربية وعالمية في قلب فاس."
+  },
+  "locale": {
+    "en": "English",
+    "fr": "Français",
+    "ar": "العربية"
+  }
+}

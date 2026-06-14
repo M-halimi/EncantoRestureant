@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"] *));
+
+@theme inline {
+  --color-terracotta-50: #fdf4ef;
+  --color-terracotta-100: #fae5d9;
+  --color-terracotta-200: #f4c8b2;
+  --color-terracotta-300: #eba282;
+  --color-terracotta-400: #e07750;
+  --color-terracotta-500: #d45a30;
+  --color-terracotta-600: #c25b3a;
+  --color-terracotta-700: #9d442b;
+  --color-terracotta-800: #7f3927;
+  --color-terracotta-900: #693224;
+
+  --color-teal-50: #effcf9;
+  --color-teal-100: #d7f5ed;
+  --color-teal-200: #b0e9db;
+  --color-teal-300: #7ad8c1;
+  --color-teal-400: #44c0a4;
+  --color-teal-500: #27a48a;
+  --color-teal-600: #1b8470;
+  --color-teal-700: #1b7b7b;
+  --color-teal-800: #1a605d;
+  --color-teal-900: #1a4f4d;
+
+  --color-gold-50: #fefbf0;
+  --color-gold-100: #fdf2d0;
+  --color-gold-200: #fbe39f;
+  --color-gold-300: #f8ce64;
+  --color-gold-400: #f5b93a;
+  --color-gold-500: #d4a853;
+  --color-gold-600: #b8892e;
+  --color-gold-700: #976e26;
+  --color-gold-800: #7c5a24;
+  --color-gold-900: #694b23;
+
+  --color-cream: #f5f0eb;
+  --color-cream-dark: #e8dfd5;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Noto Sans Arabic", sans-serif;
+
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-slide-up: slide-up 0.6s ease-out;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+[dir="rtl"] body {
+  font-family: var(--font-arabic), var(--font-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
