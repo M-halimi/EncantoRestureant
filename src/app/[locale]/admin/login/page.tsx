@@ -22,17 +22,22 @@ export default function AdminLoginPage() {
     setLoading(true)
     setError(null)
 
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    })
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      })
 
-    if (result?.error) {
-      setError("Invalid credentials")
+      if (result?.error) {
+        setError("Invalid credentials")
+      } else {
+        router.push(`/${locale}/admin/reservations`)
+      }
+    } catch {
+      setError("An unexpected error occurred. Please try again.")
+    } finally {
       setLoading(false)
-    } else {
-      router.push(`/${locale}/admin/reservations`)
     }
   }
 
