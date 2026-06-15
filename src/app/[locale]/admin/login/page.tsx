@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
       })
 
       if (result?.error) {
-        setError("Invalid credentials")
+        setError(result.error === "CredentialsSignin" ? "Invalid email or password" : result.error)
       } else {
         router.push(`/${locale}/admin/reservations`)
       }
