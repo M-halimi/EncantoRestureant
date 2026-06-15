@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client"
 import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { auth } from "@/lib/auth"
@@ -55,11 +56,11 @@ export async function PATCH(
     }
 
     return NextResponse.json({ success: true, reservation })
-  } catch {
-    return NextResponse.json(
-      { error: "Reservation not found" },
-      { status: 404 }
-    )
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+      return NextResponse.json({ error: "Reservation not found" }, { status: 404 })
+    }
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
 
@@ -93,10 +94,10 @@ export async function DELETE(
     await prisma.reservation.delete({ where: { id } })
 
     return NextResponse.json({ success: true })
-  } catch {
-    return NextResponse.json(
-      { error: "Reservation not found" },
-      { status: 404 }
-    )
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+      return NextResponse.json({ error: "Reservation not found" }, { status: 404 })
+    }
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

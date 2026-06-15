@@ -91,9 +91,9 @@ export async function GET(request: Request) {
 
   if (search) {
     where.OR = [
-      { name: { contains: search } },
-      { email: { contains: search } },
-      { id: { contains: search } },
+      { name: { contains: search, mode: "insensitive" } },
+      { email: { contains: search, mode: "insensitive" } },
+      { id: { contains: search, mode: "insensitive" } },
     ]
   }
 
